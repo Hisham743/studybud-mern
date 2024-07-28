@@ -7,6 +7,7 @@ const socketIo = require('socket.io');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const expressListEndpoints = require('express-list-endpoints');
 
 const userRoutes = require('./routes/userRoutes');
 const roomRoutes = require('./routes/roomRoutes');
@@ -47,6 +48,15 @@ app.use('/api/rooms', roomRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/topics', topicRoutes);
 app.use('/api/auth', authRoutes);
+app.get('/api', (req, res) => {
+  const endpoints = expressListEndpoints(app);
+  const endpointsWithoutMiddlewares = endpoints.map((endpoint) => {
+    return { path: endpoint.path, methods: endpoint.methods };
+  });
+  endpointsWithoutMiddlewares.pop();
+
+  res.status(200).json(endpointsWithoutMiddlewares);
+});
 
 io.on('connection', (socket) => {
   socket.on('join room', (roomId) => socket.join(roomId));
