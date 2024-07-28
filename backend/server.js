@@ -59,7 +59,6 @@ app.get('/api', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log('A user connected to socket');
   socket.on('join room', (roomId) => socket.join(roomId));
   socket.on('leave room', (roomId) => socket.leave(roomId));
 
