@@ -21,7 +21,7 @@ const io = new socketIo.Server(server, {
   cors: {
     origin: process.env.FRONTEND_ORIGIN,
     credentials: true,
-    allowedHeaders: ['GET', 'POST', 'PATCH'],
+    methods: ['GET', 'POST', 'PATCH'],
   },
 });
 
@@ -59,6 +59,7 @@ app.get('/api', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+  console.log('A user connected to socket');
   socket.on('join room', (roomId) => socket.join(roomId));
   socket.on('leave room', (roomId) => socket.leave(roomId));
 
