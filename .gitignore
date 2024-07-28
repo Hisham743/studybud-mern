@@ -1,0 +1,8 @@
+node_modules
+todo.txt
+
+backend/node_modules
+backend/.env
+backend/temp
+
+frontend/node_modules
