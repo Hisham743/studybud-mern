@@ -13,7 +13,7 @@ export const useSocket = () => {
 };
 
 export const SocketProvider = ({ children }) => {
-  const socket = io('http://localhost:4000');
+  const socket = io(import.meta.env.VITE_BACKEND_URL);
 
   useEffect(() => () => socket.disconnect(), [socket]);
   return (

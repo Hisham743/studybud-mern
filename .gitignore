@@ -6,3 +6,5 @@ backend/.env
 backend/temp
 
 frontend/node_modules
+frontend/.env
+frontend/dist
