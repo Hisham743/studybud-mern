@@ -1,10 +1,5 @@
 node_modules
-todo.txt
-
-backend/node_modules
-backend/.env
+.env
 backend/temp
-
-frontend/node_modules
-frontend/.env
 frontend/dist
+todo.txt
