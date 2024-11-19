@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+
+  frontend:
+    build: ./frontend
+    env_file:
+      - ./frontend/.env.production
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+    depends_on:
+      - backend

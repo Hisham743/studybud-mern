@@ -1,5 +1,5 @@
 node_modules
-.env
+.env*
 backend/temp
 frontend/dist
 todo.txt
