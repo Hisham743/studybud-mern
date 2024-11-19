@@ -33,16 +33,28 @@ The project is divided into two main parts:
 - Node.js
 - MongoDB
 - npm
+- Docker (optional, for containerized deployment)
 
 ## Installation
 
+### Local Development
+
 1. Clone the repository
 2. Install dependencies:
-   ```
+
+   ```bash
    npm install
    cd backend && npm install
    cd frontend && npm install
    ```
+
+### Docker Deployment
+
+Alternatively, you can use Docker for easy deployment:
+
+```bash
+docker-compose up --build
+```
 
 ## Configuration
 
@@ -61,32 +73,57 @@ PORT=4000
 NODE_ENV="development"
 ```
 
-### Frontend (.env file in the frontend directory)
+### Frontend Environment Files
 
-Create a `.env` file in the frontend directory with the following variable:
+Create two environment files in the frontend directory:
+
+- `.env.development`
+- `.env.production`
+
+With the following variables:
 
 ```
 VITE_BACKEND_URL=http://localhost:4000
+PORT=3000
 ```
+
+### Root Environment File (for Docker)
+
+Create a `.env` file in the project root for docker port forwarding configuration:
+
+```
+BACKEND_PORT=4000
+FRONTEND_PORT=3000
+```
+
+> **Important Note:** Ensure that the `PORT` values in `/backend/.env` and `/frontend/.env.production` match the `BACKEND_PORT` and `FRONTEND_PORT` values in the root `.env` file. This is crucial for consistent port mapping in Docker and local development.
 
 ## Running the Application
 
+### Local Development
+
 To run both the backend and frontend concurrently:
 
-```
+```bash
 npm run dev
 ```
 
 To run the backend only:
 
-```
+```bash
 npm run backend
 ```
 
 To run the frontend only:
 
-```
+```bash
 npm run frontend
+```
+
+### Docker Deployment
+
+```bash
+docker-compose up
 ```
 
 ## Features
@@ -116,6 +153,11 @@ npm run frontend
 - Redux Toolkit
 - Axios
 - Socket.IO Client
+
+### DevOps
+
+- Docker
+- Docker Compose
 
 ## API Endpoints
 
